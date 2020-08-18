@@ -16,7 +16,7 @@ HOST_IP = "3.83.114.20"
 ATTACK_IP = "169.254.169.254" 
 
 # HTML file containing your payload
-PAYLOAD_FILE = "aws-imdsv1-metadata.html" 
+PAYLOAD_FILE = "aws-imdsv1-metadata-write.html" 
 
 WAIT_TIME = 4 # Seconds to wait before closing port HTTP_PORT
 
